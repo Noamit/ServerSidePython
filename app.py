@@ -35,6 +35,7 @@ def create_app(db_url=None):
 
     api = Api(app)
 
+    # todo: create a new key and remove from code
     app.config["JWT_SECRET_KEY"] = "76517074903035659443580166051695395839"
     jwt = JWTManager(app)
 
