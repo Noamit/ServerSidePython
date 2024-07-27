@@ -8,6 +8,7 @@ class ItemModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     # if we want items with an unique name, than add unique=True
     name = db.Column(db.String(30), nullable=False)
+    description = db.Column(db.String())
     price = db.Column(db.Float(precision=2), unique=False, nullable=False)
     store_id = db.Column(
         db.Integer, db.ForeignKey("stores.id"), unique=False, nullable=False

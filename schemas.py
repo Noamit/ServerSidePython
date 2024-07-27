@@ -7,6 +7,7 @@ class PlainItemSchema(Schema):
     id = fields.Int(dump_only=True)
     # when data came from request, its required. those 2 required on request data and should be those types.
     name = fields.Str(required=True)
+    description = fields.Str()
     price = fields.Float(required=True)
 
 
@@ -33,6 +34,7 @@ class ItemUpdateSchema(Schema):
     name = fields.Str()
     price = fields.Float()
     store_id = fields.Int()
+    description = fields.Str()
 
 
 class TagSchema(PlainTagSchema):
