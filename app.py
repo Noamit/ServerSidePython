@@ -1,4 +1,6 @@
 import os
+from dotenv import load_dotenv
+
 from blocklist import BLOCKLIST
 from flask import Flask, jsonify
 from flask_smorest import Api
@@ -18,6 +20,7 @@ from resources.user import blp as UserBlueprint
 def create_app(db_url=None):
 
     app = Flask(__name__)
+    load_dotenv()
 
     app.config["PROPAGATE_EXCEPTIONS"] = True
     app.config["API_TITLE"] = "Stores REST API"
@@ -29,7 +32,10 @@ def create_app(db_url=None):
     # will create a file called data.db.
     # if there is db_url it will connect to the uel and if not it will conect to the env variable by sqlite
     app.config["SQLALCHEMY_DATABASE_URI"] = db_url or "sqlite:///data.db"
+    # app.config["SQLALCHEMY_DATABASE_URI"] = db_url or os.getenv(
+    #     "DATABASE_URL", "sqlite:///data.db")
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    app.config["PROPAGATE_EXCEPTIONS"] = True
 
     # init SQLALCHEMY with our flack app
     db.init_app(app)
